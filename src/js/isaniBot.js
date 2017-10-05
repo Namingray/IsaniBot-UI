@@ -303,6 +303,7 @@ class IsaniBot {
       });
 
       $('.bot-create-event-button').click(() => {
+        $('.bot-create-event-button').attr('disabled', '');
         const eventName = $(".textarea-title").val();
         const at = $(".textarea-time").val();
         const part = parseInt($(".textarea-amount").val());
@@ -362,14 +363,20 @@ class IsaniBot {
                 $('.bot-event-reg-panel').find('textarea').val('');
                 $(".server-response").text(this._locale.eventSuccess);
               }
+
+              setTimeout(() => {
+                $('.bot-create-event-button').removeAttr('disabled');
+              }, 5000);
             }
             else {
               $(".server-response").text(body);
+              $('.bot-create-event-button').removeAttr('disabled');
             }
           });
         }
         catch (error) {
           $(".server-response").text(error);
+          $('.bot-create-event-button').removeAttr('disabled');
         }
       });
     }
