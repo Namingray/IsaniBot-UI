@@ -3,6 +3,7 @@ class BaseWrapper {
 
     this._content = {};
     this._isReady = $.Deferred();
+    this._serverEndpoint = 'http://iiss.me/discord/plugin/';
     this._endpoints = [];
   }
 
@@ -21,7 +22,7 @@ class BaseWrapper {
     else {
       this._endpoints.forEach(endpoint => {
         setTimeout(() => {
-          request({url: endpoint}, (error, response, body) => {
+          request({url: this._serverEndpoint + endpoint}, (error, response, body) => {
             if (!error && response.statusCode === 200) {
               this._content[endpoint.match(/([^/]+)(?=\.\w+$)/)[0]] = body.replace(/(\r\n|\n|\r)/gm, "");
             }
@@ -49,7 +50,7 @@ class CssWrapper extends BaseWrapper {
 
     super();
     this._endpoints = [
-        'http://iiss.me/discord/plugin/src/css/isaniBotUI.css'
+        'src/css/isaniBotUI.css'
     ];
 
     this._downloadContent('css');
@@ -60,8 +61,8 @@ class HtmlWrapper extends BaseWrapper {
   constructor() {
     super();
     this._endpoints = [
-        'http://iiss.me/discord/plugin/src/html/newEventPanel.html',
-        'http://iiss.me/discord/plugin/src/html/settings.html'
+        'src/html/newEventPanel.html',
+        'src/html/settings.html'
     ];
 
     this._downloadContent('html')
@@ -72,9 +73,10 @@ class LocalesWrapper extends BaseWrapper {
   constructor() {
     super();
     this._endpoints = [
-        'http://iiss.me/discord/plugin/src/data/locales.json'
+        'src/data/locales.json'
     ]
 
     this._downloadContent('locales')
+    this._content = JSON.parse(this._content.locales);
   }
 }
