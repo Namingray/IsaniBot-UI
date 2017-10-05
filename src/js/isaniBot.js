@@ -17,6 +17,7 @@ class IsaniBot {
       this._isReady = $.Deferred();
 
       $.when(this._locales.isReady()).then(() => {
+        this._locale.setContent(JSON.parse(this._locale.getContent('locales')));
         this._locale = this._locales.getContent(navigator.language) || this._locales.getContent('default');
       });
 

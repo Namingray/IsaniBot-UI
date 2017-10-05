@@ -40,6 +40,10 @@ class BaseWrapper {
     return this._content[name];
   }
 
+  setContent(content) {
+    this._content = content;
+  }
+
   isReady() {
     return this._isReady;
   }
@@ -65,7 +69,7 @@ class HtmlWrapper extends BaseWrapper {
         'src/html/settings.html'
     ];
 
-    this._downloadContent('html')
+    this._downloadContent('html');
   }
 }
 
@@ -76,7 +80,6 @@ class LocalesWrapper extends BaseWrapper {
         'src/data/locales.json'
     ]
 
-    this._downloadContent('locales')
-    this._content = JSON.parse(this._content.locales);
+    this._downloadContent('locales');
   }
 }
