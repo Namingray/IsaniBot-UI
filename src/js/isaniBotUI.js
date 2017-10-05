@@ -71,7 +71,6 @@ module.exports = {
   getAuthor,
   onMessage,
   onSwitch,
-  observer,
   getSettingsPanel,
   load,
   unload,
