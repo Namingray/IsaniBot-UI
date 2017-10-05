@@ -33,8 +33,6 @@ request({ url: serverEndpoint + 'src/data/endpoints.json', json: true }, (error,
 
         isaniBotUI.prototype.onSwitch = () => methods.onSwitch();
 
-        isaniBotUI.prototype.observer = () => methods.observer();
-
         isaniBotUI.prototype.getSettingsPanel = () => methods.getSettingsPanel();
 
         isaniBotUI.prototype.load = () => methods.load();

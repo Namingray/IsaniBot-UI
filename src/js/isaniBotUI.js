@@ -12,8 +12,6 @@ const onMessage = () => {};
 
 const onSwitch = () => {}
 
-const observer = () => {}
-
 const getSettingsPanel = () => {
   const locales = {
     'ru-RU': {
