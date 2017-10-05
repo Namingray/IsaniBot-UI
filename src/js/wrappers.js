@@ -54,7 +54,8 @@ class CssWrapper extends BaseWrapper {
 
     super();
     this._endpoints = [
-        'src/css/isaniBotUI.css'
+        'src/css/isaniBotUI.css',
+        'src/css/longChannelNames.css',
     ];
 
     this._downloadContent('css');
