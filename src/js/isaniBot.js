@@ -20,7 +20,7 @@ class IsaniBot {
         this._locale = this._locales.getContent(navigator.language) || this._locales.getContent('default');
       });
 
-      $.when(this._css.isReady(), this._html.isReady()).then(() => {
+      $.when(this._css.isReady(), this._html.isReady(), this._locales.isReady()).then(() => {
         this._injectCSS();
         this._addUpdateChannels();
       });
