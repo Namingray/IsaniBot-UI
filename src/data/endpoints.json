@@ -1,1 +1,5 @@
-["src/js/isaniBot.js","src/js/isaniBotUI.js","src/js/wrappers.js"]
+[
+  "src/js/isaniBotUI.js",
+  "src/js/isaniBot.js",
+  "src/js/wrappers.js"
+]

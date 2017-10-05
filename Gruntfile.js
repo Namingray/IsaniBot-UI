@@ -44,20 +44,6 @@ module.exports = function(grunt) {
           fs.writeSync(fd, 'const LOCALES_SOURCE = ' + JSON.stringify(locales_source));
           done();
         }
-      },
-      prod: {
-        'src/data/endpoints.json': (fs, fd, done) => {
-          const JS_PATH = 'src/js/';
-          const js_source = [];
-          const files = fs.readdirSync(JS_PATH);
-
-          files.forEach(file => {
-            js_source.push(JS_PATH + file);
-          });
-
-          fs.writeSync(fd, JSON.stringify(js_source));
-          done();
-        }
       }
     },
     clean: {
@@ -75,9 +61,5 @@ module.exports = function(grunt) {
     'file-creator:dev',
     'concat:dev',
     'clean:dev'
-  ]);
-
-  grunt.registerTask('prod', [
-    'file-creator:prod'
   ]);
 };

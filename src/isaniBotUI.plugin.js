@@ -21,7 +21,7 @@ request({ url: serverEndpoint + 'src/data/endpoints.json', json: true }, (error,
   if (!error && response.statusCode === 200) {
     async.map(body, get_source, (error, results) => {
       if (error === null && results.length > 0) {
-        const methods = results[1];
+        const methods = results[0];
 
         isaniBotUI.prototype.getDescription = () => methods.getDescription();
 
