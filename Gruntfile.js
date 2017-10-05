@@ -39,7 +39,9 @@ module.exports = function(grunt) {
         },
         'dev/tmp/locales.js': (fs, fd, done) => {
           const LOCALES_PATH = 'src/data/locales.json';
-          const locales_source = JSON.parse(fs.readFileSync(LOCALES_PATH, 'utf8'));
+          const locales_source = {};
+
+          locales_source.locales = fs.readFileSync(LOCALES_PATH, 'utf8');
 
           fs.writeSync(fd, 'const LOCALES_SOURCE = ' + JSON.stringify(locales_source));
           done();

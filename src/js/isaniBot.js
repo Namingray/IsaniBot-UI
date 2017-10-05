@@ -200,7 +200,7 @@ class IsaniBot {
                 else {
                   $buttonReg.css('top', '3px').css('right', '3px');
                   $buttonUnreg.css('top', '3px').css('right', '3px');
-                  $(value).find('.comment .accessory .embed-author').append($buttonReg);
+                  $(value).find('.comment .accessory .embed-author').append($buttonReg).append($buttonUnreg);
                 }
 
                 if ($.inArray(this._username, registeredUsers) === -1) {
