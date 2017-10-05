@@ -1,0 +1,17 @@
+div[class^="name"][class*="Voice"] {
+    overflow: visible !important;
+    white-space: pre-wrap;
+    line-height: 16px;
+}
+
+div[class^="name"][class*="Voice"]:first-line {
+    line-height: 32px;
+}
+
+div[class^="wrapper"][class*="Voice"] {
+    height: auto !important;
+}
+
+div[class^="content"][class*="Voice"] {
+    height: auto !important;
+}

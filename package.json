@@ -1,0 +1,21 @@
+{
+  "name": "isanibot-ui",
+  "version": "1.0.0",
+  "description": "Extends default discord UI with isani-bot functionality",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Namingray/IsaniBot-UI.git"
+  },
+  "author": "Namingray",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Namingray/IsaniBot-UI/issues"
+  },
+  "homepage": "https://github.com/Namingray/IsaniBot-UI#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-file-creator": "^0.1.3"
+  }
+}
