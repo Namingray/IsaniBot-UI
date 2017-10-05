@@ -219,7 +219,7 @@ class IsaniBot {
       });
     }
     catch(error) {
-      console.log('IsaniBot UI exception - addEventRegButtons - ' + error.stack, 'background: #222; color: #bada55');
+      console.log('%c IsaniBot UI exception - addEventRegButtons - ' + error.stack, 'background: #222; color: #bada55');
     }
   }
 
@@ -373,7 +373,7 @@ class IsaniBot {
       });
     }
     catch(error) {
-      console.log('IsaniBot UI exception - addEventRegPanel - ' + error.stack, 'background: #222; color: #bada55');
+      console.log('%c IsaniBot UI exception - addEventRegPanel - ' + error.stack, 'background: #222; color: #bada55');
     }
   }
 }

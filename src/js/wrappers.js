@@ -9,7 +9,7 @@ class BaseWrapper {
   _downloadContent(type) {
     let counter = this._endpoints.length;
 
-    if (DEBUG_FLAG) {
+    if (typeof DEBUG_FLAG !== 'undefined') {
       this._content = {
         'css': CSS_SOURCE,
         'html': HTML_SOURCE,
