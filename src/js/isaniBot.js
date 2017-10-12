@@ -232,7 +232,7 @@ class IsaniBot {
 
       $panel = this._setRegPanelText($panel);
 
-      $('#app-mount').children().append($('<div></div>').addClass(this._theme).append($panel));
+      $('#app-mount .platform-win .app').append($('<div></div>').addClass(this._theme).append($panel));
 
       const _setIconState = () => {
         this._loadingTime = 500;
