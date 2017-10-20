@@ -154,6 +154,7 @@ class IsaniBot {
                 const eventID = $(value).find('.embed-title').text().split(' ').pop();
                 const $buttonReg = $('<button type="button" class="button btn-default bot-event-reg-button"></button>');
                 const $buttonUnreg = $('<button type="button" class="button btn-success bot-event-unreg-button"></button>');
+                const $buttonDelete = $('<button type="button" class="button bot-event-delete-button">X</button>');
 
                 const _handler = (requestAction, button1, button2) => () => {
                   button1.attr('disabled', 'disabled');
@@ -194,14 +195,45 @@ class IsaniBot {
                     })
                     .click(_handler('part', $buttonUnreg, $buttonReg));
 
-                if ($(value).find('.comment .body').length) {
-                  $(value).find('.comment .body').append($buttonReg).append($buttonUnreg);
+                $buttonDelete.click(() => {
+                  $('.bot-event-delete-button').attr('disabled', '');
+
+                  request({
+                    uri: IsaniBot.getEndpoints().events,
+                    method: 'DELETE',
+                    json: {
+                      "channel_id": this._getSelectedChannel()[0].channel_id.toString(),
+                      "event_id": eventID,
+                      "user": {
+                        "nickname": this._username,
+                        "usr_id": this._usernameID
+                      }
+                    }
+                  });
+                });
+
+                $(value).find('.action-buttons').remove();
+
+                const eventData = this._getEventParams($(value).find('.embed-content .embed-author a').attr('href'));
+                const id = parseInt(this._usernameID);
+
+                if (eventData && (id === eventData.author_id || eventData.admins.indexOf(id) !== -1)) {
+                  $(value).find('.comment').append($buttonDelete);
+                  $buttonReg.css('right', '53px');
+                  $buttonUnreg.css('right', '53px');
                 }
-                else {
-                  $buttonReg.css('top', '3px').css('right', '3px');
-                  $buttonUnreg.css('top', '3px').css('right', '3px');
-                  $(value).find('.comment .accessory .embed-author').append($buttonReg).append($buttonUnreg);
+
+                if (!$(value).find('.comment .body').length) {
+                  $buttonReg.addClass('compact-button');
+                  $buttonUnreg.addClass('compact-button');
+                  $buttonDelete.addClass('compact-button');
+
+                  $buttonReg.css('right', '49px');
+                  $buttonUnreg.css('right', '49px');
+                  $(value).find('.accessory').css('margin-top', '7px');
                 }
+
+                $(value).find('.comment').append($buttonReg).append($buttonUnreg);
 
                 if ($.inArray(this._username, registeredUsers) === -1) {
                   $buttonReg.show();

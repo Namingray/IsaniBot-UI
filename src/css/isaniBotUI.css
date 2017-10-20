@@ -94,11 +94,21 @@
 }
 
 .bot-event-reg-button,
-.bot-event-unreg-button {
+.bot-event-unreg-button,
+.bot-event-delete-button {
     position: absolute;
-    right: 12px;
+    right: 5px;
     top: 10px;
     width: 112px;
+}
+
+.bot-event-delete-button {
+    width: auto;
+}
+
+.compact-button {
+    top: 3px;
+    right: 3px;
 }
 
 .btn-default {
@@ -118,17 +128,16 @@
     background-color: #f04747;
 }
 
-.delete-event-btn {
+.bot-event-delete-button {
     border: 1px solid rgba(240,71,71,.3);
     background-color: transparent;
     color: #f04747;
 }
 
-.delete-event-btn:hover {
+.bot-event-delete-button:hover {
     border: 1px solid rgba(240,71,71,.6);
     background-color: transparent;
 }
-
 
 .discord-settings-btn {
     background: #7289da;
