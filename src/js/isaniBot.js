@@ -6,7 +6,6 @@ class IsaniBot {
       this._botID = id;
       this._username = $('[class^="accountDetails-"]').find('.username').text();
       this._usernameID = $('[class^="accountDetails-"]').parent().find('.avatar-small').css('background-image').split('/')[4];
-      this._loadingTime = 500;
       this._guilds = null;
       this._selectedGuild = null;
       this._updateInterval = 120 * 1000;
@@ -59,7 +58,18 @@ class IsaniBot {
   }
 
   _getSelectedChannel() {
-    return $.grep(this._guilds[this._selectedGuild], channel => channel.channel === $('.channels-wrap').find('[class^="wrapperSelectedText"]').text() && channel.available === true);
+    return $.grep(this._guilds[this._selectedGuild], channel => channel.channel === $('.container-1').parent().find('[class^="wrapperSelectedText"]').text() && channel.available === true);
+  }
+
+  _waitForPinnedMessages(callback) {
+    if ($('.empty-placeholder').length) {
+      setTimeout(() => {
+        this._waitForPinnedMessages(callback);
+      }, 100);
+    }
+    else {
+      callback();
+    }
   }
 
   updateSettings() {
@@ -140,10 +150,10 @@ class IsaniBot {
     try {
       $(document).on('click.erb', event => {
         const $target = $(event.target);
-        if ($target.eq(0).css('background-image') === 'url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiI+CiAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgIDxwYXRoIGQ9Ik0xIDFoMjR2MjRIMSIvPgogICAgPHBhdGggZmlsbD0iI0ZGRiIgZD0iTTE1IDE1VjZoLTR2OWgtLjUwODk5NDgyQzEwLjIyNzg4MDQ4IDE1IDEwIDE1LjIyMzg1NzYgMTAgMTUuNWMwIC4yNjgwNjY0LjIxOTgzMDUuNS40OTEwMDUxOC41aDUuMDE3OTg5NjRDMTUuNzcyMTE5NTIgMTYgMTYgMTUuNzc2MTQyNCAxNiAxNS41YzAtLjI2ODA2NjQtLjIxOTgzMDUtLjUtLjQ5MTAwNTE4LS41SDE1em0yLTloMVY0SDh2MmgxdjhsLTIgMnYyaDUuMnY0aDEuNnYtNEgxOXYtMmwtMi0yVjZ6Ii8+CiAgPC9nPgo8L3N2Zz4=")') {
-          setTimeout(() => {
+        if ($target.attr('name') === 'Pin' || $target.parent().parent().attr('name') === 'Pin') {
+          this._waitForPinnedMessages(() => {
             if (this.checkBotPresence()) {
-              const $pinnedEvents = $('.popout .scroller .message-group').filter((index, event) => {
+              const $pinnedEvents = $('.popouts .scroller .message-group').filter((index, event) => {
                 const json = this._getEventParams($(event).find('.embed-content .embed-author a').attr('href'));
                 return json !== null;
               });
@@ -243,11 +253,9 @@ class IsaniBot {
                   $buttonUnreg.show();
                   $buttonReg.hide();
                 }
-
-                this._loadingTime = 50;
               });
             }
-          }, this._loadingTime);
+          });
         }
       });
     }
@@ -258,7 +266,7 @@ class IsaniBot {
 
   addEventRegPanel() {
     try {
-      const $button = $('<button type="button" class="bot-event-reg-icon"><span></span></button>');
+      const $button = $('<button type="button" class="bot-event-reg-icon"></button>');
 
       let $panel = $(this._html.getContent('newEventPanel'));
 
@@ -267,7 +275,6 @@ class IsaniBot {
       $('#app-mount .platform-win .app').append($('<div></div>').addClass(this._theme).append($panel));
 
       const _setIconState = () => {
-        this._loadingTime = 500;
         if (this.checkBotPresence()) {
           $button.removeClass('disabled-image').removeAttr('disabled');
         }
@@ -295,7 +302,7 @@ class IsaniBot {
           event.stopImmediatePropagation();
         });
 
-        $('.header-toolbar').prepend($button);
+        $(".chat").find('[class^="titleWrapper"]').children().eq(0).children().eq(2).prepend($button);
       }
 
       const _guildClickLogic = () => {
@@ -326,7 +333,7 @@ class IsaniBot {
 
       $(document).on('click.erp', event => {
         const $panel = $('.bot-event-reg-panel');
-        const $icon = $('.bot-event-reg-icon span');
+        const $icon = $('.bot-event-reg-icon');
 
         if (!$panel.is(event.target) && !$panel.has(event.target).length && !$icon.is(event.target)) {
           $panel.hide();
