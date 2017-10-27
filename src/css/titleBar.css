@@ -1,0 +1,15 @@
+[class^="typeWindows"] {
+    display: none !important;
+}
+
+[class^="titleWrapper-"] {
+    -webkit-app-region: drag;
+}
+
+.bot-event-reg-icon {
+    -webkit-app-region: no-drag;
+}
+
+.base-3AoPqv {
+    border-radius: 0;
+}

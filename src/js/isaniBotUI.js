@@ -16,10 +16,12 @@ const getSettingsPanel = () => {
   const locales = {
     'ru-RU': {
       longChannelNames: 'Показывать полностью длинные имена голосовых каналов',
+      titleBar: 'Скрыть верхнюю полосу',
       updateSettings: 'Сохранить и обновить'
     },
     'default': {
       longChannelNames: 'Show full names of voice channels',
+      titleBar: 'Hide top title bar',
       updateSettings: 'Save & Update'
     }
   }
@@ -36,6 +38,14 @@ const getSettingsPanel = () => {
             <input type="checkbox" onchange="(() => { $('#saveUpdateButton').text('${saved_locale}'); })()"
                    id="longChannelNames" ${bdPluginStorage.get('isaniBotUI', 'longChannelNames') ? 'checked' : ''}>
             <label for="longChannelNames">${locale.longChannelNames}</label>
+          </div>
+        </form>
+        
+        <form>
+          <div>
+            <input type="checkbox" onchange="(() => { $('#saveUpdateButton').text('${saved_locale}'); })()"
+                   id="titleBar" ${bdPluginStorage.get('isaniBotUI', 'titleBar') ? 'checked' : ''}>
+            <label for="titleBar">${locale.titleBar}</label>
           </div>
         </form>
         

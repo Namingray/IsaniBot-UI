@@ -55,6 +55,10 @@ class IsaniBot {
     if (bdPluginStorage.get('isaniBotUI', 'longChannelNames')) {
       BdApi.injectCSS('longChannelNames', this._css.getContent('longChannelNames'));
     }
+
+    if (bdPluginStorage.get('isaniBotUI', 'titleBar')) {
+      BdApi.injectCSS('titleBar', this._css.getContent('titleBar'));
+    }
   }
 
   _getSelectedChannel() {
@@ -82,6 +86,16 @@ class IsaniBot {
     }
 
     bdPluginStorage.set('isaniBotUI', 'longChannelNames', longChannelNamesValue);
+
+    const titleBarValue = $('#titleBar').is(':checked');
+    if (titleBarValue) {
+      BdApi.injectCSS('titleBar', this._css.getContent('titleBar'));
+    }
+    else {
+      BdApi.clearCSS('titleBar');
+    }
+
+    bdPluginStorage.set('isaniBotUI', 'titleBar', titleBarValue);
 
     const locale = this._locales.getContent(navigator.language) || this._locales.getContent('default');
     $('#saveUpdateButton').text(locale.saved);
