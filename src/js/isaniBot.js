@@ -58,6 +58,7 @@ class IsaniBot {
 
     if (bdPluginStorage.get('isaniBotUI', 'titleBar')) {
       BdApi.injectCSS('titleBar', this._css.getContent('titleBar'));
+      this._tweakTitleBar();
     }
   }
 
@@ -76,6 +77,22 @@ class IsaniBot {
     }
   }
 
+  _tweakTitleBar() {
+    $('.guilds-wrapper').prepend($('<div class="tweakedTitleBar"></div>'))
+
+    $('[name*="TitleBarMinimize"]').parent().prependTo('.tweakedTitleBar');
+    $('[name*="TitleBarMaximize"]').parent().prependTo('.tweakedTitleBar');
+    $('[name*="TitleBarClose"]').parent().prependTo('.tweakedTitleBar');
+  }
+
+  _untweakTitleBar() {
+    $('.tweakedTitleBar [name*="TitleBarClose"]').parent().appendTo($('#app-mount').children().eq(0));
+    $('.tweakedTitleBar [name*="TitleBarMaximize"]').parent().appendTo($('#app-mount').children().eq(0));
+    $('.tweakedTitleBar [name*="TitleBarMinimize"]').parent().appendTo($('#app-mount').children().eq(0));
+
+    $('.tweakedTitleBar').remove();
+  }
+
   updateSettings() {
     const longChannelNamesValue = $('#longChannelNames').is(':checked');
     if (longChannelNamesValue) {
@@ -90,9 +107,11 @@ class IsaniBot {
     const titleBarValue = $('#titleBar').is(':checked');
     if (titleBarValue) {
       BdApi.injectCSS('titleBar', this._css.getContent('titleBar'));
+      this._tweakTitleBar();
     }
     else {
       BdApi.clearCSS('titleBar');
+      this._untweakTitleBar();
     }
 
     bdPluginStorage.set('isaniBotUI', 'titleBar', titleBarValue);

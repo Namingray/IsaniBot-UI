@@ -13,3 +13,9 @@
 .base-3AoPqv {
     border-radius: 0;
 }
+
+.tweakedTitleBar {
+    height: 18px;
+    margin-top: 4px;
+    display: flex;
+}
