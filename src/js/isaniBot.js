@@ -336,7 +336,7 @@ class IsaniBot {
         });
 
         $(".chat").find('[class^="titleWrapper"]').children().eq(0).children().eq(2).prepend($button);
-      }
+      };
 
       const _guildClickLogic = () => {
         setTimeout(() => {
