@@ -1,5 +1,5 @@
 # IsaniBot-UI ![ss](https://user-images.githubusercontent.com/7711740/32970381-6d62a66a-cbf1-11e7-8588-b595db6a594d.png)
-IsaniBot-UI is a [BetterDiscord](http://betterdiscord.net) plugin witch extends default [Discord](https://discordapp.com) UI with isani-bot functionality.
+IsaniBot-UI is a [BetterDiscord](http://betterdiscord.net) plugin which extends default [Discord](https://discordapp.com) UI with isani-bot functionality.
 
 Read this in other languages: [Русский](README.ru.md).
 
