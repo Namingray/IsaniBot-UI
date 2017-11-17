@@ -1,7 +1,7 @@
 # IsaniBot-UI ![ss](https://user-images.githubusercontent.com/7711740/32970381-6d62a66a-cbf1-11e7-8588-b595db6a594d.png)
 IsaniBot-UI это плагин для [BetterDiscord](http://betterdiscord.net), который добавляет в [Discord](https://discordapp.com) новые элементы интерфейса для isani-bot.
 
-Инструкции на других языках: [English](https://github.com/Namingray/IsaniBot-UI/Readme.md).
+Инструкции на других языках: [English](README.md).
 
 ## Установка
 
