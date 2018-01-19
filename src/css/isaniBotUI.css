@@ -38,11 +38,13 @@
 }
 
 .event-textarea {
+	background-color: rgba(72, 75, 81, 0.84);
     border-radius: 4px;
     padding: 4px 5px
 }
 
 .event-textarea textarea {
+	color: rgba(255, 255, 255, 0.7);
     background-color: transparent;
     resize: none;
     outline: none;
@@ -53,6 +55,7 @@
     font-weight: 400;
     font-size: 0.9375rem;
     letter-spacing: -0.025rem;
+	line-height: 1.25rem;
     width: 100%;
     min-height: 20px;
     margin: 2px 2px 2px 0;
