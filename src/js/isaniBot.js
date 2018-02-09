@@ -331,7 +331,7 @@ class IsaniBot {
           if ($('.bot-event-reg-panel').css('display') === 'none') {
             $panel.show();
             $panel.css({
-              'top': '43px',
+              'top': '36px',
               'left': ($('body').width() - 238) + 'px'
             });
           }
