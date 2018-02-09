@@ -6,7 +6,7 @@ Read this in other languages: [Русский](README.ru.md).
 ## Installation
 
 1. Download and install [Discord](https://discordapp.com/download).
-2. Download and install [BetterDiscord](http://betterdiscord.net/home/).
+2. Download and install [BetterDiscord](https://github.com/rauenzi/BetterDiscordApp).
 3. Download last version of IsaniBot-UI plugin from the [repository](https://github.com/Namingray/IsaniBot-UI/releases).
 4. Install plugin with .msi installer. 
 5. Refresh Discord with `[CTRL]` + `[R]` or just restart Discord completely.
