@@ -57,7 +57,11 @@ const getSettingsPanel = () => {
   return getTemplate(locale.updateSettings);
 }
 
-const load = () => {
+const load = () => {};
+
+const unload = () => {};
+
+const start = () => {
   const observer = new MutationObserver((mutations, observer) => {
     const accountDetails = $('[class^="accountDetails-"]')
     if (accountDetails.length) {
@@ -75,10 +79,6 @@ const load = () => {
 
   observer.observe(document, { childList: true, subtree: true });
 };
-
-const unload = () => {};
-
-const start = () => {};
 
 const stop = () => {
   isaniBot.destroy();
