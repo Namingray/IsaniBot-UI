@@ -45,6 +45,11 @@ class IsaniBot {
     const $elements = $('.bot-event-reg-button, .bot-event-unreg-button, .bot-event-reg-icon, .bot-event-reg-panel, .bot-event-reg-panel');
     $elements.remove();
 
+    this._untweakTitleBar();
+
+    BdApi.clearCSS('titleBar');
+    BdApi.clearCSS('longChannelNames');
+
     $(document).off("click.erb");
     $(document).off("click.erp");
   }
