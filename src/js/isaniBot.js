@@ -187,14 +187,14 @@ class IsaniBot {
           this._waitForPinnedMessages(() => {
             if (this.checkBotPresence()) {
               const $pinnedEvents = $('.popouts .scroller .message-group').filter((index, event) => {
-                const json = this._getEventParams($(event).find('.embed-content .embed-author a').attr('href'));
+                const json = this._getEventParams($(event).find('[class^="embedTitleLink-"]').attr('href'));
                 return json !== null;
               });
 
               $.each($pinnedEvents, (index, value) => {
-                const $embedField = $(value).find('.comment .accessory .embed-field');
-                const registeredUsers = $embedField.last().find('.embed-field-value').text().split(', ');
-                const eventID = $(value).find('.embed-title').text().split(' ').pop();
+                const $embedField = $(value).find('.comment .accessory').find('[class^="embedFields"]');
+                const registeredUsers = $embedField.find('[class^="embedFieldValue"]').last().text().split(', ');
+                const eventID = $(value).find('[class^="embedTitle"]').text().split(' ').pop();
                 const $buttonReg = $('<button type="button" class="button btn-default bot-event-reg-button"></button>');
                 const $buttonUnreg = $('<button type="button" class="button btn-success bot-event-unreg-button"></button>');
                 const $buttonDelete = $('<button type="button" class="button bot-event-delete-button">X</button>');
@@ -252,12 +252,14 @@ class IsaniBot {
                         "usr_id": this._usernameID
                       }
                     }
+                  }, () => {
+                    $('.bot-event-delete-button').removeAttr('disabled');
                   });
                 });
 
                 $(value).find('.action-buttons').remove();
 
-                const eventData = this._getEventParams($(value).find('.embed-content .embed-author a').attr('href'));
+                const eventData = this._getEventParams($(value).find('[class^="embedTitleLink-"]').attr('href'));
                 const id = parseInt(this._usernameID);
 
                 if (eventData && (id === eventData.author_id || eventData.admins.indexOf(id) !== -1)) {
@@ -338,8 +340,11 @@ class IsaniBot {
         $(".chat").find('[class^="titleWrapper"]').children().eq(0).children().eq(2).prepend($button);
       };
 
-      const _guildClickLogic = () => {
+      const _guildClickLogic = (event) => {
         setTimeout(() => {
+          if (event && $(event.target).is('div')) {
+            $('.scroller.guilds').find('.guild').click((event) => _guildClickLogic(event));
+          }
           if (!$('.bot-event-reg-icon').length) {
             _createButton();
           }
@@ -362,7 +367,7 @@ class IsaniBot {
       _createButton();
       _guildClickLogic();
 
-      $('.scroller.guilds').find('.guild').click(_guildClickLogic);
+      $('.scroller.guilds').find('.guild').click((event) => _guildClickLogic(event));
 
       $(document).on('click.erp', event => {
         const $panel = $('.bot-event-reg-panel');

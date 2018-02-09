@@ -58,17 +58,27 @@ const getSettingsPanel = () => {
 }
 
 const load = () => {
-  isaniBot = new IsaniBot('215243788162039809');
+  const observer = new MutationObserver((mutations, observer) => {
+    const accountDetails = $('[class^="accountDetails-"]')
+    if (accountDetails.length) {
+      isaniBot = new IsaniBot('215243788162039809');
+
+      $.when(isaniBot.isReady()).then(() => {
+        isaniBot.addEventRegButtons();
+        isaniBot.addEventRegPanel();
+      });
+
+      observer.disconnect();
+      return;
+    }
+  });
+
+  observer.observe(document, { childList: true, subtree: true });
 };
 
 const unload = () => {};
 
-const start = () => {
-  $.when(isaniBot.isReady()).then(() => {
-    isaniBot.addEventRegButtons();
-    isaniBot.addEventRegPanel();
-  });
-};
+const start = () => {};
 
 const stop = () => {
   isaniBot.destroy();
