@@ -6,7 +6,7 @@ IsaniBot-UI это плагин для [BetterDiscord](http://betterdiscord.net)
 ## Установка
 
 1. Скачиваем и устанавливаем [Discord](https://discordapp.com/download).
-2. Скачиваем и устанавливаем [BetterDiscord](http://betterdiscord.net/home/).
+2. Скачиваем и устанавливаем [BetterDiscord](https://github.com/rauenzi/BetterDiscordApp).
 3. Скачиваем последнюю версию плагина из [репозитория](https://github.com/Namingray/IsaniBot-UI/releases).
 4. Устанавливаем плагин с помощью .msi установщика. 
 5. Обновляем Discord комбинацией клавиш `[CTRL]` + `[R]` или же полностью перезапускаем приложение.
