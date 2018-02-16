@@ -146,7 +146,12 @@
     background-color: #677bc4;
 }
 
-.accessory a, .accessory a img {
+.messages-popout-wrap .accessory a[class^="imageWrapper"] {
+    width: 100% !important;
+    height: 150px !important;
+}
+
+.messages-popout-wrap .accessory a img {
     width: auto !important;
     height: auto !important;
 }
